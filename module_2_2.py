@@ -1,10 +1,10 @@
-
-first, second, third = input('Введите три числа: ').split()
+first = int(input("Введите первое число: "))
+second = int(input("Введите второе число: "))
+third = int(input("Введите третье число: "))
 print( first, second, third)
-if first != second and first != third:
-    print(0)
+if first == second and first == third and third == second:
+    print(3)
+elif first == second or second == third or third == first:
+    print(2)
 else:
-    if  first == second and first == third:
-        print(3)
-    else:
-        print(2)
+    print(0)
