@@ -1,4 +1,3 @@
-
 def get_matrix(n, m, value):
     matrix_1 = []
     for i in range(n):
