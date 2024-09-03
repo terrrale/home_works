@@ -1,5 +1,7 @@
 def get_matrix(n, m, value):
+
     matrix_1 = []
+
     for i in range(n):
         matrix_2 = []
         for j in range(m):
