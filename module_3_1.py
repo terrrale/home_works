@@ -4,7 +4,6 @@ calls = 0
 def count_calls():
     global calls
     calls += 1
-    return calls
 
 def string_info(string):
     count_calls()
@@ -13,7 +12,7 @@ def string_info(string):
 
 def is_contains(string, list_to_search):
     count_calls()
-    # list(list_to_search)
+    list(list_to_search)
     print(string)
     for i in list_to_search:
         print(i)
