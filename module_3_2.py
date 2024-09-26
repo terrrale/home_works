@@ -1,36 +1,40 @@
-def_swich = True
+
+check = False
+
 def email_check(email):
-    global def_swich
-    if "@" in email and "mail" in email:
-        for i in [".com", ".ru", ".net"]:
+    global check
+    if '@mail' in email or '@gmail' in email:
+        for i in ['.com', '.ru', '.net']:
             if i in email:
-                def_swich = True
+                check = True
                 break
             else:
-                def_swich = False
+                check = False
     else:
-        def_swich = False
+        check = False
 
 def sender_check(sender, recipient):
-    if sender == "university.help@gmail.com":
+    if sender == recipient:
+        print("Нельзя отправить письмо самому себе!")
+    elif sender == "university.help@gmail.com":
         print(f"Письмо успешно отправлено с адреса {sender} на адрес {recipient}.")
     else:
         print(f"НЕСТАНДАРТНЫЙ ОТПРАВИТЕЛЬ! Письмо отправлено с адреса {sender} на адрес {recipient}.")
 
-def send_email(message, recipient, sender = "university.help@gmail.com"):
-    email_check(sender)
-    email_check(recipient)
-    if def_swich:
-        sender_check(sender, recipient)
-    else:
+def send_email(message, recipient, *,sender = "university.help@gmail.com"):
+    for i in [sender, recipient]:
+        email_check(i)
+        if not check:
+            break
+    if not check :
         print(f"Невозможно отправить письмо с адреса {sender} на адрес {recipient}")
+    else:
+        sender_check(sender, recipient)
 
-send_email("Здравствуйте! Поздравляем вас с окончанием курса 'Пайтон разработчик'", "student@mail.com")
-print("___________________________")
-send_email("Здравствуйте! Поздравляем вас с окончанием курса 'Пайтон разработчик'", "student@mail")
-print("___________________________")
-send_email("Здравствуйте! Поздравляем вас с окончанием курса 'Пайтон разработчик'", "student@mail.uk")
-print("___________________________")
-send_email("Здравствуйте! Поздравляем вас с окончанием курса 'Пайтон разработчик'", "student.ru")
-print("___________________________")
-send_email("Здравствуйте! Поздравляем вас с окончанием курса 'Пайтон разработчик'", "student@mail.ru", "university.help@gmail.ru")
+send_email('Это сообщение для проверки связи', 'vasyok1337@gmail.com')
+print("______________________")
+send_email('Вы видите это сообщение как лучший студент курса!', 'urban.fan@mail.ru', sender='urban.info@gmail.com')
+print("______________________")
+send_email('Пожалуйста, исправьте задание', 'urban.student@mail.ru', sender='urban.teacher@mail.uk')
+print("______________________")
+send_email('Напоминаю самому себе о вебинаре', 'urban.teacher@mail.ru', sender='urban.teacher@mail.ru')
